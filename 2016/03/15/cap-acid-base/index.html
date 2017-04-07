@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>分布式系统中的几个概念——CAP、ACID、BASE | ewangplay&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="分布式," />
+  
+
+  <meta name="description" content="这两天在阅读一篇关于微服务的文章时，作者提到了CAP的原则，作者没有做任何的解释，只是引用了这个原则，感觉应该是业界比较知名的理论，想当然的认为阅读者已经知晓了。 我的确是孤陋寡闻啊，竟然完全不知道CAP是什么东东，只好在网上补习了一下。记录于此，作为备忘吧。 CAPCAP理论是用来描述分布式系统的一个准则：  C（一致性）：所有的节点上的数据时刻保持同步 A（可用性）：每个请求都能接受到一个响应">
+<meta name="keywords" content="分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式系统中的几个概念——CAP、ACID、BASE">
+<meta property="og:url" content="http://ewangplay.github.io/2016/03/15/cap-acid-base/index.html">
+<meta property="og:site_name" content="ewangplay's Blog">
+<meta property="og:description" content="这两天在阅读一篇关于微服务的文章时，作者提到了CAP的原则，作者没有做任何的解释，只是引用了这个原则，感觉应该是业界比较知名的理论，想当然的认为阅读者已经知晓了。 我的确是孤陋寡闻啊，竟然完全不知道CAP是什么东东，只好在网上补习了一下。记录于此，作为备忘吧。 CAPCAP理论是用来描述分布式系统的一个准则：  C（一致性）：所有的节点上的数据时刻保持同步 A（可用性）：每个请求都能接受到一个响应">
+<meta property="og:updated_time" content="2017-04-07T15:35:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式系统中的几个概念——CAP、ACID、BASE">
+<meta name="twitter:description" content="这两天在阅读一篇关于微服务的文章时，作者提到了CAP的原则，作者没有做任何的解释，只是引用了这个原则，感觉应该是业界比较知名的理论，想当然的认为阅读者已经知晓了。 我的确是孤陋寡闻啊，竟然完全不知道CAP是什么东东，只好在网上补习了一下。记录于此，作为备忘吧。 CAPCAP理论是用来描述分布式系统的一个准则：  C（一致性）：所有的节点上的数据时刻保持同步 A（可用性）：每个请求都能接受到一个响应">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">新世界</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">新世界</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CAP"><span class="toc-text">CAP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ACID"><span class="toc-text">ACID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BASE"><span class="toc-text">BASE</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-cap-acid-base" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">分布式系统中的几个概念——CAP、ACID、BASE</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.03.15</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ewangplay</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/分布式系统/">分布式系统</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>这两天在阅读一篇关于微服务的文章时，作者提到了CAP的原则，作者没有做任何的解释，只是引用了这个原则，感觉应该是业界比较知名的理论，想当然的认为阅读者已经知晓了。</p>
+<p>我的确是孤陋寡闻啊，竟然完全不知道CAP是什么东东，只好在网上补习了一下。记录于此，作为备忘吧。</p>
+<h2 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h2><p>CAP理论是用来描述分布式系统的一个准则：</p>
+<ul>
+<li>C（一致性）：所有的节点上的数据时刻保持同步</li>
+<li>A（可用性）：每个请求都能接受到一个响应，无论响应成功或失败</li>
+<li>P（分区容错）：系统应该能持续提供服务，即使系统内部有消息丢失（分区）</li>
+</ul>
+<p>围绕这三天引申出来的定理：任何分布式系统在可用性、一致性、分区容错性方面，不能兼得，最多只能得其二，因此，任何分布式系统的设计只是在三者中的不同取舍而已。</p>
+<p>根据上述定理，具体的分布式系统衍生模式如下：</p>
+<ul>
+<li>CA without P：如果不要求P（不允许分区），则C（强一致性）和A（可用性）是可以保证的。但其实分区不是你想不想的问题，而是始终会存在，因此CA的系统更多的是允许分区后各子系统依然保持CA。</li>
+<li>CP without A：如果不要求A（可用），相当于每个请求都需要在Server之间强一致，而P（分区）会导致同步时间无限延长，如此CP也是可以保证的。很多传统的数据库分布式事务都属于这种模式。</li>
+<li>AP wihtout C：要高可用并允许分区，则需放弃一致性。一旦分区发生，节点之间可能会失去联系，为了高可用，每个节点只能用本地数据提供服务，而这样会导致全局数据的不一致性。现在众多的NoSQL都属于此类。</li>
+</ul>
+<p>不过值得注意的是，CAP并不是适应任何场景的定理，具体问题要具体分析。</p>
+<p>这是一篇讲解CAP非常好的文章：<a href="http://blog.csdn.net/chen77716/article/details/30635543" target="_blank" rel="external">CAP理论</a>，以供按考。</p>
+<h2 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h2><p>ACID是数据库事务正常执行的四个原则，分别指原子性、一致性、独立性及持久性。</p>
+<ul>
+<li><p>A: 事务的原子性(Atomicity)，是指一个事务要么全部执行，要么不执行。也就是说一个事务不可能只执行了一半就停止了。比如你从取款机取钱,这个事务可以分成两个步骤：1、划卡，2、出钱。不可能划了卡，而钱却没出来。这两步必须同时完成，要么就不完成。</p>
+</li>
+<li><p>C: 事务的一致性(Consistency)，是指事务的运行并不改变数据库中数据的一致性。例如，完整性约束了a+b=10，一个事务改变了a，那么b也应该随之改变。</p>
+</li>
+<li><p>I: 事务的独立性(Isolation），是指两个以上的事务不会出现交错执行的状态。因为这样可能会导致数据不一致。</p>
+</li>
+<li><p>D: 事务的持久性(Durability），是指事务执行成功以后，该事务所对数据库所作的更改便是持久的保存在数据库之中，不会无缘无故的回滚。</p>
+</li>
+</ul>
+<h2 id="BASE"><a href="#BASE" class="headerlink" title="BASE"></a>BASE</h2><p>BASE模型跟ACID模型相对应，牺牲高一致性，获得可用性或可靠性：</p>
+<ul>
+<li><p>BA：Basically Available基本可用。支持分区失败(e.g. sharding碎片划分数据库)</p>
+</li>
+<li><p>S: Soft state软状态，可以有一段时间不同步。</p>
+</li>
+<li><p>E: Eventually consistent最终一致，最终数据是一致的就可以了，而不是时时高一致。</p>
+</li>
+</ul>
+<p>BASE思想主要强调基本的可用性，如果你需要高可用性，也就是纯粹的高性能，那么就要以一致性或容错性为牺牲。</p>
+<p>现在NoSQL运动丰富了拓展了BASE思想，可按照具体情况定制特别方案，比如忽视一致性，获得高可用性等等。</p>
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2016/03/16/martinfowler-microservices-blog-understanding/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2016/02/20/coding-dojo-handbook-what-is-a-coding-dojo/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

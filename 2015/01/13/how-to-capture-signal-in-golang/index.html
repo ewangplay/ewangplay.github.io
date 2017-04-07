@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Go语言中如何捕获系统信号 | ewangplay&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Golang,信号," />
+  
+
+  <meta name="description" content="熟悉C语言的同学可能都知道在标准C的编程中，我们通常使用标准C库提供的signal函数来捕获系统信号并执行我们注册的回调函数。对于进行服务端编程的同学来说，这样一个需求是很普遍的。我最近一直在使用Go语言写服务端程序，很自然也碰到了这个需求。那么在Go语言中如何实现捕获系统的信号并处理我们自己的流程呢？ 大致了解了一下，在Go语言中要实现这个需求，需要用到两个package：os/signal和s">
+<meta name="keywords" content="Golang,信号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go语言中如何捕获系统信号">
+<meta property="og:url" content="http://ewangplay.github.io/2015/01/13/how-to-capture-signal-in-golang/index.html">
+<meta property="og:site_name" content="ewangplay's Blog">
+<meta property="og:description" content="熟悉C语言的同学可能都知道在标准C的编程中，我们通常使用标准C库提供的signal函数来捕获系统信号并执行我们注册的回调函数。对于进行服务端编程的同学来说，这样一个需求是很普遍的。我最近一直在使用Go语言写服务端程序，很自然也碰到了这个需求。那么在Go语言中如何实现捕获系统的信号并处理我们自己的流程呢？ 大致了解了一下，在Go语言中要实现这个需求，需要用到两个package：os/signal和s">
+<meta property="og:updated_time" content="2017-04-07T15:35:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Go语言中如何捕获系统信号">
+<meta name="twitter:description" content="熟悉C语言的同学可能都知道在标准C的编程中，我们通常使用标准C库提供的signal函数来捕获系统信号并执行我们注册的回调函数。对于进行服务端编程的同学来说，这样一个需求是很普遍的。我最近一直在使用Go语言写服务端程序，很自然也碰到了这个需求。那么在Go语言中如何实现捕获系统的信号并处理我们自己的流程呢？ 大致了解了一下，在Go语言中要实现这个需求，需要用到两个package：os/signal和s">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">新世界</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">新世界</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-how-to-capture-signal-in-golang" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Go语言中如何捕获系统信号</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.01.13</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ewangplay</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/编程语言/">编程语言</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>熟悉C语言的同学可能都知道在标准C的编程中，我们通常使用标准C库提供的signal函数来捕获系统信号并执行我们注册的回调函数。对于进行服务端编程的同学来说，这样一个需求是很普遍的。我最近一直在使用Go语言写服务端程序，很自然也碰到了这个需求。那么在Go语言中如何实现捕获系统的信号并处理我们自己的流程呢？</p>
+<p>大致了解了一下，在Go语言中要实现这个需求，需要用到两个package：os/signal和syscall，其中os/signal提供了实现捕获系统信号的接口，syscall提供了常规的信号量定义。</p>
+<p>下面我们看一下os/signal提供的接口函数：</p>
+<ol>
+<li><p>通知在指定的channel上接收相应的系统信号</p>
+<pre><code>func Notify(c chan&lt;- os.Signal, sig ...os.Signal)
+</code></pre></li>
+</ol>
+<blockquote>
+<p>针对该接口的注意点：</p>
+<ul>
+<li>捕获到的系统信号会被放入channel中，如果指定了sig列表，那么指定的系统信号会被放入channel中；如果sig列表为空，那么所有的系统信号会被放入channel中。</li>
+<li>signal包并不保证在channel没有存放空间时阻塞捕获的系统信号的放入，所以如果使用者自己要保证make的channel有足够大的空间来接收多个系统信号。</li>
+<li>允许在同一个channel上调用Notify多次，这样每次调用相当于扩充了在channel上接收到的系统信号的数量。</li>
+<li>允许在不同的channel上针对同一个系统信号调用多次，这样当系统信号到来时，针对每一个channel都会接收到系统信号的一个拷贝。</li>
+</ul>
+</blockquote>
+<ol>
+<li><p>停止在指定的channel上接收系统信号</p>
+<pre><code>func Stop(c chan&lt;- os.Signal)
+</code></pre></li>
+</ol>
+<blockquote>
+<p>针对该接口的注意点：</p>
+<ul>
+<li>Stop调用会保证针对channel不再接收到任何的系统信号。不管之前针对该channel调用了多少次Notify，一次Stop足矣。</li>
+</ul>
+</blockquote>
+<p>Go语言中捕获系统信号的机制跟之前C语言的方式有很大的改变，不再是针对特定的系统信号注册自定义函数，而是把设定要捕获的系统信号放入一个channel中，至于使用者怎么操作channel来处理这个系统信号，完全由使用者说了算，给了开发者很大的灵活性。</p>
+<p>鉴于捕获系统信号的处理通常跟主流程分离，所以在使用中通常需要启动一个单独的goroutine来处理。下面我以实际项目中的一个小需求来演示一下捕获系统信号的使用方法。</p>
+<p>我们有一个服务在维护一个短信发送的流水号，每次发送一批短信，该流水号会加1。那么很自然的需求，当我们Stop该服务时，就需要把当前的流水号给保存起来，服务Restart时重新加载进来，在原有数值的基础上继续累加。而我们的服务通常Stop的方式就是使用kill或者killall来结束，就需要捕获到相应的系统信号，然后执行保存操作后再结束程序。</p>
+<pre><code>var g_smsSerialNumber uint64
+
+func readSMSSerialNumber() (uint64, error) {
+    var smsSerialNumber uint64
+
+    filename, ok := g_config.Get(&quot;service.smsSerialNumber&quot;)
+    if !ok || filename == &quot;&quot; {
+        return 0, fmt.Errorf(&quot;没有指定短信流水号的存储文件&quot;)
+    }
+
+    f, err := os.Open(filename)
+    if err != nil {
+        return 0, err
+    }
+    defer f.Close()
+
+    data, err := ioutil.ReadAll(f)
+    if err != nil {
+        return 0, err
+    }
+
+    strNumber := string(data)
+    smsSerialNumber, err = strconv.ParseUint(strNumber, 0, 0)
+    if err != nil {
+        return 0, err
+    }
+
+    return smsSerialNumber, nil
+}
+
+func saveSMSSerialNumber(smsSerialNumber uint64) error {
+
+    filename, ok := g_config.Get(&quot;service.smsSerialNumber&quot;)
+    if !ok || filename == &quot;&quot; {
+        return fmt.Errorf(&quot;没有指定短信流水号的存储文件&quot;)
+    }
+
+    f, err := os.Create(filename)
+    if err != nil {
+        return err
+    }
+    defer f.Close()
+
+    strNumber := strconv.FormatUint(smsSerialNumber, 10)
+
+    _, err = f.WriteString(strNumber)
+    if err != nil {
+        return err
+    }
+
+    return nil
+}
+
+func sigHandler() {
+    var outputStr string
+
+    c := make(chan os.Signal)
+    //拦截指定的系统信号
+    signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)
+
+    for {
+        select {
+        case s := &lt;-c:
+            outputStr = fmt.Sprintf(&quot;接收到系统信号: %v&quot;, s)
+            g_logger.Info(outputStr)
+
+            err := saveSMSSerialNumber(g_smsSerialNumber)
+            if err != nil {
+                outputStr = fmt.Sprintf(&quot;保存短信流水号smsSerialNumber失败, 失败原因: %v&quot;, err)
+                g_logger.Error(outputStr)
+            } else {
+                outputStr = fmt.Sprintf(&quot;保存短信流水号smsSerialNumber成功&quot;)
+                g_logger.Info(outputStr)
+
+                os.Exit(0)
+            }
+        }
+    }
+}
+
+func main() {
+
+    g_smsSerialNumber, err = readSMSSerialNumber()
+    if err != nil {
+        //如果失败，流水号从0开始计算
+        g_smsSerialNumber = 0
+    }
+    go sigHandler()
+
+    //服务主流程
+    //......
+}
+</code></pre>
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2015/01/14/daily-thinking-20150114/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2015/01/13/我的2015年计划/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

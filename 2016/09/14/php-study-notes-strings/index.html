@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP学习笔记——字符串操作 | ewangplay&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="学习笔记,php," />
+  
+
+  <meta name="description" content="PHP作为一个方便使用的脚本语言，对字符串的处理能力也是其突出的一个优势，我们今天就大概浏览一下在PHP中，有那些主要的针对字符串的操作。 格式化字符串去除字符串两侧的特殊字符 trim: 去除字符串开头和结尾的特殊字符  ltrim: 去除字符串开头的特殊字符  rtrim: 去除字符串结尾的特殊字符   这里的特殊字符默认包括：换行符(\n)、回车符(\r)、水平制表符(\t)、垂直制表符(\">
+<meta name="keywords" content="学习笔记,php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP学习笔记——字符串操作">
+<meta property="og:url" content="http://ewangplay.github.io/2016/09/14/php-study-notes-strings/index.html">
+<meta property="og:site_name" content="ewangplay's Blog">
+<meta property="og:description" content="PHP作为一个方便使用的脚本语言，对字符串的处理能力也是其突出的一个优势，我们今天就大概浏览一下在PHP中，有那些主要的针对字符串的操作。 格式化字符串去除字符串两侧的特殊字符 trim: 去除字符串开头和结尾的特殊字符  ltrim: 去除字符串开头的特殊字符  rtrim: 去除字符串结尾的特殊字符   这里的特殊字符默认包括：换行符(\n)、回车符(\r)、水平制表符(\t)、垂直制表符(\">
+<meta property="og:updated_time" content="2017-04-07T15:35:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP学习笔记——字符串操作">
+<meta name="twitter:description" content="PHP作为一个方便使用的脚本语言，对字符串的处理能力也是其突出的一个优势，我们今天就大概浏览一下在PHP中，有那些主要的针对字符串的操作。 格式化字符串去除字符串两侧的特殊字符 trim: 去除字符串开头和结尾的特殊字符  ltrim: 去除字符串开头的特殊字符  rtrim: 去除字符串结尾的特殊字符   这里的特殊字符默认包括：换行符(\n)、回车符(\r)、水平制表符(\t)、垂直制表符(\">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">新世界</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">新世界</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#格式化字符串"><span class="toc-text">格式化字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#去除字符串两侧的特殊字符"><span class="toc-text">去除字符串两侧的特殊字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#替换回车换行符为HTML标签"><span class="toc-text">替换回车换行符为HTML标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#格式化输出字符串"><span class="toc-text">格式化输出字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#改变字符串的大小写"><span class="toc-text">改变字符串的大小写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#跟存储字符串相关的格式化函数"><span class="toc-text">跟存储字符串相关的格式化函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拼装和分解字符串"><span class="toc-text">拼装和分解字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#比较字符串"><span class="toc-text">比较字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查找匹配字符串"><span class="toc-text">查找匹配字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#替换字符串"><span class="toc-text">替换字符串</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-php-study-notes-strings" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">PHP学习笔记——字符串操作</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.09.14</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ewangplay</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/编程语言/">编程语言</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>PHP作为一个方便使用的脚本语言，对字符串的处理能力也是其突出的一个优势，我们今天就大概浏览一下在PHP中，有那些主要的针对字符串的操作。</p>
+<h2 id="格式化字符串"><a href="#格式化字符串" class="headerlink" title="格式化字符串"></a>格式化字符串</h2><h3 id="去除字符串两侧的特殊字符"><a href="#去除字符串两侧的特殊字符" class="headerlink" title="去除字符串两侧的特殊字符"></a>去除字符串两侧的特殊字符</h3><ul>
+<li><p>trim: 去除字符串开头和结尾的特殊字符</p>
+</li>
+<li><p>ltrim: 去除字符串开头的特殊字符</p>
+</li>
+<li><p>rtrim: 去除字符串结尾的特殊字符</p>
+</li>
+</ul>
+<p>这里的特殊字符默认包括：换行符(\n)、回车符(\r)、水平制表符(\t)、垂直制表符(\x0B)、字符串结束符(\0)、和空格字符。如果你希望去除这些默认字符之外的一些字符，可以通过这些函数的第二个参数来指定要去除的字符列表。</p>
+<h3 id="替换回车换行符为HTML标签"><a href="#替换回车换行符为HTML标签" class="headerlink" title="替换回车换行符为HTML标签"></a>替换回车换行符为HTML标签</h3><ul>
+<li>nl2br: 会把字符串中的回车符(\n)、换行符(\r)、回车换行符(\r\n)、换行回车符(\n\r)替换成<code>&lt;br /&gt;</code>或者<code>&lt;br&gt;</code></li>
+</ul>
+<h3 id="格式化输出字符串"><a href="#格式化输出字符串" class="headerlink" title="格式化输出字符串"></a>格式化输出字符串</h3><ul>
+<li><p>echo: 在标准输出上输出一个或多个字符串</p>
+</li>
+<li><p>print: 在标准输出上输出一个字符串</p>
+</li>
+<li><p>printf: 在标准输出上格式化输出一个字符串</p>
+</li>
+<li><p>sprintf: 格式化一个字符串并返回</p>
+</li>
+</ul>
+<p>如果使用过C语言，就很容易理解这些函数的用法，因为它们的含义和使用方法跟C语言中对应的格式化字符串函数基本一样。</p>
+<h3 id="改变字符串的大小写"><a href="#改变字符串的大小写" class="headerlink" title="改变字符串的大小写"></a>改变字符串的大小写</h3><ul>
+<li><p>strtoupper: 把字符串中的字符全部转换成大写</p>
+</li>
+<li><p>strtolower: 把字符串中字符全部转换成小写</p>
+</li>
+<li><p>ucfirst: 把字符串的第一个字符转换成大写</p>
+</li>
+<li><p>ucwords: 把字符串中每一个单词的第一个字符转换成大写</p>
+</li>
+</ul>
+<h3 id="跟存储字符串相关的格式化函数"><a href="#跟存储字符串相关的格式化函数" class="headerlink" title="跟存储字符串相关的格式化函数"></a>跟存储字符串相关的格式化函数</h3><p>有一些字符在字符串中是有效的，但是当存储到数据库中时会产生问题，比如这些字符：单引号(<code>&#39;</code>)、双引号(<code>&quot;</code>)、反斜杠(<code>\</code>)、NULL字符(<code>NUL</code>)。<br>数据库系统会把这些字符特殊的控制字符进行解析，所以必须提供一种机制让数据库系统把这些字符当成普通字符而不进行解析，方法就是在这些字符前面添加一个反斜杠(<code>\</code>):</p>
+<blockquote>
+<p><code>&#39;</code> =&gt; <code>\&#39;</code><br><code>&quot;</code> =&gt; <code>\&quot;</code><br><code>\</code> =&gt; <code>\\</code><br><code>NUL</code> =&gt; <code>\NUL</code></p>
+</blockquote>
+<p>PHP提供了两个对应的格式化函数来处理这种情况：</p>
+<ul>
+<li><p>addslashes: 对字符串中的特殊控制字符添加反斜杠</p>
+</li>
+<li><p>stripslashes: 去除字符串中特殊控制字符前面的反斜杠</p>
+</li>
+</ul>
+<p>这是手动的方式，PHP可以通过配置m<code>agic_quotes_gpc</code>选项开启自动格式化模式，如果该选项开启的话，从<code>GET</code>、<code>POST</code>和<code>COOKIE</code>这三个来源提交的变量字符串会自动对字符串中的特殊控制字符添加反斜杠。PHP提供了一个函数让你来判断是否开启了自动模式：<code>get_magic_quotes_gpc()</code>，这样我们在程序中就可以根据这个判断来决定如何进行处理了。</p>
+<p>下面是是一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">// If magic quotes are enabled</div><div class="line">echo $_POST[&apos;lastname&apos;];             // O\&apos;reilly</div><div class="line">echo addslashes($_POST[&apos;lastname&apos;]); // O\\\&apos;reilly</div><div class="line"></div><div class="line">// Usage across all PHP versions</div><div class="line">if (get_magic_quotes_gpc()) &#123;</div><div class="line">    $lastname = stripslashes($_POST[&apos;lastname&apos;]);</div><div class="line">&#125;</div><div class="line">else &#123;</div><div class="line">    $lastname = $_POST[&apos;lastname&apos;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">// If using MySQL</div><div class="line">$lastname = mysql_real_escape_string($lastname);</div><div class="line"></div><div class="line">echo $lastname; // O\&apos;reilly</div><div class="line">$sql = &quot;INSERT INTO lastnames (lastname) VALUES (&apos;$lastname&apos;)&quot;;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<h2 id="拼装和分解字符串"><a href="#拼装和分解字符串" class="headerlink" title="拼装和分解字符串"></a>拼装和分解字符串</h2><ul>
+<li>explode：按照特定的分隔符对字符串进行分割，分割的元素存储在数组中返回。还可以使用额外的参数<code>limit</code>限制分割元素的数量。</li>
+</ul>
+<p>该函数的原型如下：<br><code>array explode(string separator, string input [, int limit]);</code></p>
+<p>我们看一个例子，这个例子把email地址中的域名部分分离出来，然后根据域名来决定把反馈邮件发送到哪里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$email_array = explode(‘@’, $email);</div><div class="line">if (strtolower($email_array[1]) == “bigcustomer.com”) &#123; </div><div class="line">    $toaddress = “bob@example.com”;</div><div class="line">&#125; else &#123;</div><div class="line">    $toaddress = “feedback@example.com”;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>implode：该函数达到的效果跟<code>explode</code>相反，把一个数组元素通过特定的分隔符拼接起来。</li>
+</ul>
+<p>该函数的原型如下：<br><code>string implode ( string $glue , array $pieces )</code><br><code>string implode ( array $pieces )</code></p>
+<p>参数<code>$glue</code>用来指定拼接时的分隔符，如果没有指定，默认为空格。</p>
+<ul>
+<li><p>join：是<code>implode</code>函数的别名。</p>
+</li>
+<li><p>strtok：该函数也是用来分割字符串，与<code>explode</code>函数不同的时，这个函数每次调用只分割一个元素，所以需要多次循环调用才能把一个字符串分割完毕。</p>
+</li>
+</ul>
+<p>原型如下：<br><code>string strtok ( string $str , string $token )</code><br><code>string strtok ( string $token )</code></p>
+<p>第一次调用时，传入要分割的字符串<code>$str</code>，返回一个根据<code>$token</code>分割的元素，接着的调用就不需要传入原始字符串了，只需要按照第二种原型方式调用，就会依次获取后面的分割元素。如果希望开始一个新的字符串分割，那么重新调用第一种原型方式传入新的字符串即可。</p>
+<p>下面看一个使用的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">$string = &quot;This is\tan example\nstring&quot;;</div><div class="line">$tok = strtok($string, &quot; \n\t&quot;);</div><div class="line"></div><div class="line">while ($tok !== false) &#123;</div><div class="line">    echo &quot;$tok\n&quot;;</div><div class="line">    $tok = strtok(&quot; \n\t&quot;);</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>substr：该函数用来从一个字符串中精确的分离出来一个子字符串。</li>
+</ul>
+<p>原型如下：<br><code>string substr ( string $string , int $start [, int $length ] )</code></p>
+<h2 id="比较字符串"><a href="#比较字符串" class="headerlink" title="比较字符串"></a>比较字符串</h2><ul>
+<li><p>strcmp：按字典顺序比较两个字符串，大小写敏感</p>
+</li>
+<li><p>strcasecmp：按字典顺序比较两个字符串，大小写不敏感</p>
+</li>
+<li><p>strnatcmp：按自然顺序比较两个字符串，大小写敏感</p>
+</li>
+<li><p>strnatcasecmp：按自然顺序比较两个字符串，大小写不敏感</p>
+</li>
+</ul>
+<p>这几个字符串比较函数通常用于多个字符串的排序操作。它们的原型都类似如下：<br><code>int strcmp(string str1,string str2)</code></p>
+<p>返回的比较结果规则如下：</p>
+<blockquote>
+<p>如果str1等于str2则返回0。<br>如果str1大于str2则返回1。<br>如果str1小于str2则返回-1。</p>
+</blockquote>
+<p>所谓字典顺序，就是按照字节的ASCII值从两个字符串的首字节开始比较，如果相等则进入下一个字节的比较，直至结束比较。所谓自然顺序，就是指按照人们的日常生活中的思维习惯进行排序，即将字符串中的数字部分按照数字大小进行比较。例如按照字节比较时“4”大于“33”，因为“4”大于“33”中的第一个字符，而按照自然排序法则“33”大于“4”。</p>
+<ul>
+<li>strlen: 返回字符串的长度</li>
+</ul>
+<h2 id="查找匹配字符串"><a href="#查找匹配字符串" class="headerlink" title="查找匹配字符串"></a>查找匹配字符串</h2><ul>
+<li>strstr：在一个字符串中查找子字符串或字符。在PHP中，<code>strchr</code>跟<code>strstr</code>是等同的，这一点跟C语言中有点区别，要注意一下。</li>
+</ul>
+<p>函数原型如下：<br><code>string strstr(string haystack, string needle);</code></p>
+<ul>
+<li><p>strrchr：类似于<code>strchr</code>，不同的是从字符串的尾部开始匹配查找的模式串。</p>
+</li>
+<li><p>stristr: 类似于<code>strstr</code>，不同的是大小写不敏感。</p>
+</li>
+<li><p>strpos: 类似于<code>strstr</code>，不同的是<code>strstr</code>返回查找模式的子字符串，而<code>strpos</code>返回的是查找模式的位置。</p>
+</li>
+<li><p>strrpos: 类似于<code>strpos</code>，不同的是这个是从字符串的尾部开始查找。</p>
+</li>
+</ul>
+<p>PHP中建议使用<code>strpos</code>替代<code>strstr</code>用来字符串中查找一个子字符串，原因是<code>strpos</code>的效率更高一些。</p>
+<p>使用<code>strpos</code>系列函数时，有一个小问题要注意，那就是当查找的子字符串不存在时，会返回FALSE，而在弱类型语言的PHP中，FALSE的值跟0是相等的，但类型不同，所以在判断返回结果时要使用<code>===</code>而不是<code>==</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$test = &quot;Tommoy&quot;;</div><div class="line">$result = strpos($test, “H”); </div><div class="line">if ($result === false) &#123;</div><div class="line">    echo “Not found”; </div><div class="line">&#125; else &#123;</div><div class="line">    echo “Found at position &quot;.$result; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="替换字符串"><a href="#替换字符串" class="headerlink" title="替换字符串"></a>替换字符串</h2><ul>
+<li>str_replace：通过查找的方式替换字符串中特定的子字符串。最后一个参数<code>$count</code>是可选的，用来指定替换的最大次数。</li>
+</ul>
+<p>原型如下：<br><code>mixed str_replace(mixed needle, mixed new_needle, mixed haystack[, int &amp;count]));</code></p>
+<ul>
+<li>substr_replace: 通过精确指定字符串中的位置来替换子字符串。最后一个参数<code>$length</code>是可选的，如果不指定就是替换直到末尾。</li>
+</ul>
+<p>原型如下：<br><code>string substr_replace(string string, string replacement, int start, int [length] );</code></p>
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2016/09/28/how-we-choose-when-dead-end/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2016/09/12/programer-inn-interview/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

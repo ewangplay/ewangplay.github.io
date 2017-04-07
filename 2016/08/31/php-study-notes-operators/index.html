@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP学习笔记——操作符 | ewangplay&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="学习笔记,php," />
+  
+
+  <meta name="description" content="php中的操作符分为以下几大类： 算术操作符跟其它编程语言类似，算术操作符包含加(+)、减(-)、乘(*)、除(/)、取模(%)这几个操作符，使用方法一样，没啥好说的。 字符串运算字符串操作符只有一个：连接操作符(.)，用来把两个字符串连接成一个字符串。 赋值操作符最基本的赋值操作符(=)可谓是使用频率最高的操作符了吧。 PHP也支持组合赋值操作符：+=, -=, *=, /=, %=, .=。它">
+<meta name="keywords" content="学习笔记,php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP学习笔记——操作符">
+<meta property="og:url" content="http://ewangplay.github.io/2016/08/31/php-study-notes-operators/index.html">
+<meta property="og:site_name" content="ewangplay's Blog">
+<meta property="og:description" content="php中的操作符分为以下几大类： 算术操作符跟其它编程语言类似，算术操作符包含加(+)、减(-)、乘(*)、除(/)、取模(%)这几个操作符，使用方法一样，没啥好说的。 字符串运算字符串操作符只有一个：连接操作符(.)，用来把两个字符串连接成一个字符串。 赋值操作符最基本的赋值操作符(=)可谓是使用频率最高的操作符了吧。 PHP也支持组合赋值操作符：+=, -=, *=, /=, %=, .=。它">
+<meta property="og:updated_time" content="2017-04-07T15:35:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP学习笔记——操作符">
+<meta name="twitter:description" content="php中的操作符分为以下几大类： 算术操作符跟其它编程语言类似，算术操作符包含加(+)、减(-)、乘(*)、除(/)、取模(%)这几个操作符，使用方法一样，没啥好说的。 字符串运算字符串操作符只有一个：连接操作符(.)，用来把两个字符串连接成一个字符串。 赋值操作符最基本的赋值操作符(=)可谓是使用频率最高的操作符了吧。 PHP也支持组合赋值操作符：+=, -=, *=, /=, %=, .=。它">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">新世界</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">新世界</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#算术操作符"><span class="toc-text">算术操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串运算"><span class="toc-text">字符串运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#赋值操作符"><span class="toc-text">赋值操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用操作符"><span class="toc-text">引用操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#比较操作符"><span class="toc-text">比较操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑操作符"><span class="toc-text">逻辑操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#位操作符"><span class="toc-text">位操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它操作符"><span class="toc-text">其它操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#逗号操作符"><span class="toc-text">逗号操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象操作符"><span class="toc-text">对象操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三元操作符"><span class="toc-text">三元操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误抑制操作符"><span class="toc-text">错误抑制操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行操作符"><span class="toc-text">执行操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组相关操作符"><span class="toc-text">数组相关操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型操作符"><span class="toc-text">类型操作符</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-php-study-notes-operators" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">PHP学习笔记——操作符</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.08.31</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ewangplay</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/编程语言/">编程语言</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>php中的操作符分为以下几大类：</p>
+<h2 id="算术操作符"><a href="#算术操作符" class="headerlink" title="算术操作符"></a>算术操作符</h2><p>跟其它编程语言类似，算术操作符包含加(<code>+</code>)、减(<code>-</code>)、乘(<code>*</code>)、除(<code>/</code>)、取模(<code>%</code>)这几个操作符，使用方法一样，没啥好说的。</p>
+<h2 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h2><p>字符串操作符只有一个：连接操作符(<code>.</code>)，用来把两个字符串连接成一个字符串。</p>
+<h2 id="赋值操作符"><a href="#赋值操作符" class="headerlink" title="赋值操作符"></a>赋值操作符</h2><p>最基本的赋值操作符(<code>=</code>)可谓是使用频率最高的操作符了吧。</p>
+<p>PHP也支持组合赋值操作符：<code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>, <code>.=</code>。它们的含义和使用方法跟C语言中的一样，这里也就不再赘述。</p>
+<p>还有自增(<code>++</code>)和自减(<code>--</code>)操作符，要注意它们在变量前和变量后的区别，含义和使用方法跟C语言中完全一致。</p>
+<h2 id="引用操作符"><a href="#引用操作符" class="headerlink" title="引用操作符"></a>引用操作符</h2><p>PHP中的引用操作符(<code>&amp;</code>)类似于C语言中的指针，我们也可以把它理解为给变量起了一个新的别名。</p>
+<p>通常我们把一个变量赋值给另一个变量，是对原始变量做了一份拷贝，之后对原始变量和目的变量的修改互不干扰。</p>
+<p>如果在赋值时使用了引用操作符，那么相当于对原始变量起了一个别名，原变量和目标变量指向同一处内存区域，对其中一个修改都会反映到另一个上面。</p>
+<p>例如下面的代码片段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$a = 5;</div><div class="line">$b = &amp;$a;</div><div class="line">$a = 7;</div></pre></td></tr></table></figure>
+<p>这时$a和$b相当于一个事物的两个名字，浑然一体。当$a的值修改为7时，相应的$b的值也为7。</p>
+<p>可以使用<code>unset</code>操作来切断这种关联，比如对$a变量使用<code>unset</code>操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unset($a);</div></pre></td></tr></table></figure>
+<p>这时相当于$a这个别名被抹去了，不再存在，只剩下$b可用。</p>
+<h2 id="比较操作符"><a href="#比较操作符" class="headerlink" title="比较操作符"></a>比较操作符</h2><p>PHP中的比较操作符值得注意的就是<code>==</code>和<code>===</code>的区别。<code>==</code>是判断是否相等的操作符，只要操作符两边的操作数值相等，那么就会判断为true；而<code>===</code>是判断是否完全相同的操作符，两边的操作数不但值要相等，类型也要相同，才会返回true。</p>
+<p>例如下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$a = 0;</div><div class="line">$b = &quot;0&quot;;</div><div class="line">printf(&quot;%d\n&quot;, $a == $b);</div><div class="line">printf(&quot;%d\n&quot;, $a === $b);</div></pre></td></tr></table></figure>
+<p>这里<code>$a == $b</code>就返回true，而<code>$a === $b</code>就返回false，因为$a和$b的类型不一致。</p>
+<p>同样，对判断不相等(<code>!=</code>)和判断不相同(<code>!==</code>)的这两个操作符的理解也是一样。</p>
+<p>其它的比较操作符的含义和使用跟其它编程语言中类似，不再多说。</p>
+<h2 id="逻辑操作符"><a href="#逻辑操作符" class="headerlink" title="逻辑操作符"></a>逻辑操作符</h2><p>PHP中的逻辑操作符包含NOT(<code>!</code>)、AND(<code>&amp;&amp;</code>)、OR(<code>||</code>)、低优先级AND(<code>and</code>)、低优先级OR(<code>or</code>)、XOR（<code>xor</code>)，含义和用法跟其它编程语言没有什么区别，值得注意的就是另外提供了两个低优先级的逻辑操作符: <code>and</code>和<code>or</code>。 </p>
+<h2 id="位操作符"><a href="#位操作符" class="headerlink" title="位操作符"></a>位操作符</h2><p>PHP中也提供了位操作符，但跟C语言相比，可能使用的机会不是很多。</p>
+<p>包含位AND(<code>&amp;</code>)、位OR(<code>|</code>)、位NOT(<code>~</code>)、位XOR(<code>^</code>)、左移(<code>&lt;&lt;</code>)、右移(<code>&gt;&gt;</code>)这些操作符。</p>
+<h2 id="其它操作符"><a href="#其它操作符" class="headerlink" title="其它操作符"></a>其它操作符</h2><h3 id="逗号操作符"><a href="#逗号操作符" class="headerlink" title="逗号操作符"></a>逗号操作符</h3><p>逗号操作符(<code>,</code>)用来分割函数的参数和其它一些列表元素。</p>
+<h3 id="对象操作符"><a href="#对象操作符" class="headerlink" title="对象操作符"></a>对象操作符</h3><p>新建对象操作符(<code>new</code>)用来实例化类，新建一个对象。</p>
+<p>对象成员引用操作符(<code>-&gt;</code>)用来访问一个类对象的成员。</p>
+<h3 id="三元操作符"><a href="#三元操作符" class="headerlink" title="三元操作符"></a>三元操作符</h3><p>唯一的一个三元操作符：<code>?:</code>，含义和使用跟C语言中一模一样，不再赘述。</p>
+<h3 id="错误抑制操作符"><a href="#错误抑制操作符" class="headerlink" title="错误抑制操作符"></a>错误抑制操作符</h3><p>PHP中有一个特殊的操作符<code>@</code>，可以用在任何表达式的前面，用来抑制错误的产生。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$a = 10 / 0;</div></pre></td></tr></table></figure>
+<p>这里有一个明显的错误：除数为0，执行时会显示一条警告错误。</p>
+<p>但如果前面使用了<code>@</code>操作符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$a = @(10/0);</div></pre></td></tr></table></figure>
+<p>这个错误就会被压制，不再输出警告信息。但这样做，有点掩耳盗铃的味道，所以，当你抑制一个错误发生时，应该添加一些错误处理代码来优雅地处理这种情况。</p>
+<p>如果在配置文件<code>php.ini</code>中开启了<code>track_errors</code>选项，那么经过<code>@</code>操作符压制的错误信息会存储在全局变量<code>$php_errormsg</code>中，可以通过检查该变量来判断是不是有错误产生了。</p>
+<h3 id="执行操作符"><a href="#执行操作符" class="headerlink" title="执行操作符"></a>执行操作符</h3><p>当我们尝试在PHP中执行一个外部的命令行程序时，就可以使用执行操作符(``)来进行，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$out = `ls -la`;</div><div class="line">echo $out;</div></pre></td></tr></table></figure>
+<p>命令执行的输出结果返回给变量$out。</p>
+<h3 id="数组相关操作符"><a href="#数组相关操作符" class="headerlink" title="数组相关操作符"></a>数组相关操作符</h3><p>对于数组操作，除了常规的数组元素操作符<code>[]</code>外，还提供了如下一些针对数组的操作符：</p>
+<ul>
+<li><p>联合操作符(<code>+</code>): 用来把两个数组的元素合并成一个数组。</p>
+</li>
+<li><p>判断两个数组是否相等的操作符(<code>==</code>): 用来比较两个数组是否含有相同的元素。</p>
+</li>
+<li><p>判断两个数组是否完全相同的操作符(<code>===</code>): 用来比较两个数组是否含有相同的元素并且元素的顺序相同。</p>
+</li>
+<li><p>判断两个数组是否不相等的操作符(<code>!=</code>和<code>&lt;&gt;</code>)</p>
+</li>
+<li><p>判断两个数组是否不相同的操作符(<code>!==</code>): 如果两个数组元素相同但顺序不同，也返回true</p>
+</li>
+</ul>
+<h3 id="类型操作符"><a href="#类型操作符" class="headerlink" title="类型操作符"></a>类型操作符</h3><p>PHP提供了一个类型判断操作符：<code>instanceof</code>，用来检查一个对象是否是一个类的实例，只能用于对象变量。</p>
+<p>例如下面代码片段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class SampleClass&#123;&#125;;</div><div class="line">$myOjbect = new SampleClass();</div><div class="line">if ($myOjbect instanceof SampleClass) </div><div class="line">&#123;</div><div class="line">    echo &quot;myObject is a instance of SampleClass&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2016/08/31/php-study-notes-variable-functions/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2016/08/29/php-study-notes-variable-scope/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP学习笔记——变量类型 | ewangplay&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="学习笔记,php," />
+  
+
+  <meta name="description" content="变量类型php中的变量类型是由存储于其中的数据类型决定的。 php支持如下的数据类型：  Integer： 整数类型 Float(or double): 浮点数类型 String：字符串类型 Boolean： 布尔类型，true or false Array：数组类型 Object：对象类型，用来存储类的实例  还有两种特殊的数据类型：  NULL：变量没有被赋值，或者已经被重置（unset），或">
+<meta name="keywords" content="学习笔记,php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP学习笔记——变量类型">
+<meta property="og:url" content="http://ewangplay.github.io/2016/08/29/php-study-notes-variable-type/index.html">
+<meta property="og:site_name" content="ewangplay's Blog">
+<meta property="og:description" content="变量类型php中的变量类型是由存储于其中的数据类型决定的。 php支持如下的数据类型：  Integer： 整数类型 Float(or double): 浮点数类型 String：字符串类型 Boolean： 布尔类型，true or false Array：数组类型 Object：对象类型，用来存储类的实例  还有两种特殊的数据类型：  NULL：变量没有被赋值，或者已经被重置（unset），或">
+<meta property="og:updated_time" content="2017-04-07T15:35:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP学习笔记——变量类型">
+<meta name="twitter:description" content="变量类型php中的变量类型是由存储于其中的数据类型决定的。 php支持如下的数据类型：  Integer： 整数类型 Float(or double): 浮点数类型 String：字符串类型 Boolean： 布尔类型，true or false Array：数组类型 Object：对象类型，用来存储类的实例  还有两种特殊的数据类型：  NULL：变量没有被赋值，或者已经被重置（unset），或">
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">新世界</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">新世界</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#变量类型"><span class="toc-text">变量类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型转换"><span class="toc-text">类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变变量"><span class="toc-text">可变变量</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-php-study-notes-variable-type" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">PHP学习笔记——变量类型</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.08.29</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ewangplay</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/编程语言/">编程语言</a>
+  </span>
+
+
+
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><p>php中的变量类型是由存储于其中的数据类型决定的。</p>
+<p>php支持如下的数据类型：</p>
+<ul>
+<li>Integer： 整数类型</li>
+<li>Float(or double): 浮点数类型</li>
+<li>String：字符串类型</li>
+<li>Boolean： 布尔类型，true or false</li>
+<li>Array：数组类型</li>
+<li>Object：对象类型，用来存储类的实例</li>
+</ul>
+<p>还有两种特殊的数据类型：</p>
+<ul>
+<li>NULL：变量没有被赋值，或者已经被重置（unset），或者直接赋值为NULL，那么这个变量的类型就是NULL</li>
+<li>Resource： 资源类型，通常描述一些外部资源，比如数据库连接。你不能直接操作这些变量，但通常需要再把它们传入后续的函数进行操作</li>
+</ul>
+<p>php被称为弱类型，或者是动态类型语言，就是因为一个变量的类型由赋给它的值所决定，并不是固定不变的。而对于强类型，或者是编译类型语言，一个变量只能表示一种数据类型，而且在使用之前要先定义出来，比如经典的C语言就是这样。</p>
+<p>比如，我们在php脚本中使用了一个变量$dogtutu，并且赋初值如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$dogtutu = 3;</div></pre></td></tr></table></figure>
+<p>因为赋了3给变量，所以这时变量$dogtutu的类型就是Integer类型。随后，我们在脚本中又使用了如下的赋值语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$dogtutu = &quot;hello&quot;;</div></pre></td></tr></table></figure>
+<p>这时候赋了一个字符串给变量$dogtutu，所以这时变量$dogtutu的类型就是String类型。这就是php变量的灵活性。</p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>php中的类型转换，跟C语言工作模式完全一致，都是直接在变量或数值前面使用<code>(type)</code>进行转换。如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$cat = 5;</div><div class="line">$dog = (float)$cat;</div></pre></td></tr></table></figure>
+<p>其中变量$cat就是Integer类型，而$dog就是float类型。</p>
+<h2 id="可变变量"><a href="#可变变量" class="headerlink" title="可变变量"></a>可变变量</h2><p>php中提供了一种特殊的变量：可变变量(the variable variable)，可变变量允许你动态的改变变量的名字。</p>
+<p>通常，我们定义个变量，名字都是固定的，比如$tireqty，但是php中允许使用另外一个变量作为名字来定义变量。</p>
+<p>比如，我们定义了一个变量$varname:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$varname = &apos;dogtutu&apos;;</div></pre></td></tr></table></figure>
+<p>那么$$varname就是所谓的可变变量，它使用了变量$varname的值作为了自己的变量名，所以它等价于$dogtutu。比如这时我们执行了下面的语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$$varname = 5;</div><div class="line">echo $dogtutu;</div></pre></td></tr></table></figure>
+<p>输出的值就是5，是不是很神奇。</p>
+<p>但是我们可能会疑惑，这样做的目的是什么？这个特性有什么用？我能想到的一个场景就是，当你有很多的变量需要统一处理，你一个一个处理太麻烦，这时就可以使用一个循环，用可变变量遍历所有的这些变量，做一个统一的处理，是不是就方便了很多呢。</p>
+<p>如你所见，php真是是一个很灵活的语言，它不但允许你动态改变变量的类型，而且允许你动态改变变量的名字，真的是自由无极限啊。</p>
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2016/08/29/php-study-notes-variable-scope/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2016/08/28/github-blog-bind-domain/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+
+
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
