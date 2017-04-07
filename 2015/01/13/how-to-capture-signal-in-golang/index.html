@@ -19,7 +19,7 @@
 <meta name="keywords" content="Golang,信号">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go语言中如何捕获系统信号">
-<meta property="og:url" content="http://ewangplay.github.io/2015/01/13/how-to-capture-signal-in-golang/index.html">
+<meta property="og:url" content="http://ewangplay.com/2015/01/13/how-to-capture-signal-in-golang/index.html">
 <meta property="og:site_name" content="ewangplay's Blog">
 <meta property="og:description" content="熟悉C语言的同学可能都知道在标准C的编程中，我们通常使用标准C库提供的signal函数来捕获系统信号并执行我们注册的回调函数。对于进行服务端编程的同学来说，这样一个需求是很普遍的。我最近一直在使用Go语言写服务端程序，很自然也碰到了这个需求。那么在Go语言中如何实现捕获系统的信号并处理我们自己的流程呢？ 大致了解了一下，在Go语言中要实现这个需求，需要用到两个package：os/signal和s">
 <meta property="og:updated_time" content="2017-04-07T15:35:50.000Z">
