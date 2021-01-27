@@ -1,6 +1,6 @@
 title: PHP学习笔记——变量类型
 date: 2016-08-29 9:50:55
-tags: [php]
+tags: [php,hide]
 categories: 编程技术
 ---
 
