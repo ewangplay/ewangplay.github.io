@@ -2,6 +2,7 @@ title: PHP学习笔记——脚本标签
 date: 2016-08-27 17:32:55
 tags: [php,hide]
 categories: 编程技术
+hidden: true
 ---
 当在HTML中嵌入PHP代码时，有四种表示PHP脚本代码的标签样式，分别如下：
 

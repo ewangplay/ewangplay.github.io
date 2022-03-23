@@ -2,6 +2,7 @@ title: PHP学习笔记——变量处理函数
 date: 2016-08-31 16:15:55
 tags: [php,hide]
 categories: 编程技术
+hidden: true
 ---
 
 PHP专门提供了一个用于操作和测试变量的函数库。

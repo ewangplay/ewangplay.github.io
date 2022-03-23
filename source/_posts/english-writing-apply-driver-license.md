@@ -2,6 +2,7 @@ title: Apply a driver’s license
 date: 2016-09-02 17:32:55
 tags: [学车,hide]
 categories: 杂项
+hidden: true
 ---
 This morning, my sister and I went to the HongLiDa driving school to apply a driver’s license.
 

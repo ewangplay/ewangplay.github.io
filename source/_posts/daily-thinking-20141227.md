@@ -2,6 +2,7 @@ title: 随想录（2014-12-27）
 date: 2014-12-27 11:09:29
 tags: [人生感悟,hide]
 categories: 人生随笔
+hidden: true
 ---
 ## 什么事情能让我更快乐？
 1. 运动。

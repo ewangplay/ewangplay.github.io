@@ -3,6 +3,7 @@ title: Bookworm Level 3 "The Secret Garden" Exercises
 date: 2020-08-28 14:34:28
 tags: [English, hide]
 categories: 杂项
+hidden: true
 ---
 ### 1 You are colin. Write his diary for the day when he first visited the secret garden.
 
