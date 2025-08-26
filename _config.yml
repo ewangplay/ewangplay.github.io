@@ -81,6 +81,7 @@ disqus_shortname:
 ## Plugins: https://github.com/tommy351/hexo/wiki/Plugins
 ## Themes: https://github.com/tommy351/hexo/wiki/Themes
 ## theme: persona-color
+## theme: maupassant
 theme: maupassant
 exclude_generator:
 
