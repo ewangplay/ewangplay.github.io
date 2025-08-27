@@ -119,3 +119,12 @@ hide_posts:
   public_generators: []
   # Add "noindex" meta tag to prevent hidden posts from being indexed by search engines
   noindex: true
+
+# Hexo Feed config for RSS/Atom
+# Docs: https://github.com/hexojs/hexo-generator-feed
+feed:
+  type: rss2
+  path: atom.xml
+  limit: 20
+  hub:
+  content: true
