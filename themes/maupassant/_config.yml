@@ -58,7 +58,7 @@ twikoo: ## See: https://twikoo.js.org
   region: ## Tencent CloudBase region, e.g. ap-shanghai
   path: ## Article path, e.g. window.location.pathname
 
-google_search: true ## Use Google search, true/false.
+google_search: false ## Use Google search, true/false.
 baidu_search: false ## Use Baidu search, true/false.
 swiftype: ## Your swiftype_key, e.g. m7b11ZrsT8Me7gzApciT
 self_search: false ## Use a jQuery-based local search engine, true/false.
@@ -111,9 +111,9 @@ menu:
   - page: about
     directory: about/
     icon: fa-user
-  - page: rss
-    directory: atom.xml
-    icon: fa-rss
+  # - page: rss
+  #   directory: atom.xml
+  #   icon: fa-rss
 
 widgets: ## Seven widgets in sidebar provided: search, info, category, tag, recent_posts, recent_comments and links.
   - search
@@ -122,24 +122,24 @@ widgets: ## Seven widgets in sidebar provided: search, info, category, tag, rece
   - tag
   - recent_posts
   - recent_comments
-  - links
+  # - links
 
 info:
-  avatar: /img/avatar.png
-  discription: To be a better man.
+  avatar: /images/筒中窥猫.jpg
+  discription: 因上努力，果上随缘
   outlinkitem:
     - name: twitter
-      outlink: https://twitter.com/username
-      message: Twitter
+      outlink: https://weibo.com/ewangplay
+      message: Weibo
     - name: envelope
-      outlink: mailto:admin@domain.com
+      outlink: mailto:ewangplay@qq.com
       message: Email
     - name: github
-      outlink: https://github.com/username
+      outlink: https://github.com/ewangplay
       message: Github
-    - name: rss
-      outlink: /atom.xml
-      message: RSS
+    # - name: rss
+    #   outlink: /atom.xml
+    #   message: RSS
 
 links:
   - title: site-name1
