@@ -1,4 +1,4 @@
-title: Github个人博客绑定独立域名
+title: Github个人博客如何绑定独立域名？
 date: 2016-08-28 16:32:55
 tags: [个人博客,Github]
 categories: 技术记录
