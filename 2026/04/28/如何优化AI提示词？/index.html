@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>如何优化AI提示词？ | 筒中窥猫</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="https://unpkg.com/normalize.css"><link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss/build/pure-min.css"><link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="https://unpkg.com/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/rss+xml" href="/atom.xml"><script type="text/javascript" src="https://unpkg.com/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="https://unpkg.com/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="https://unpkg.com/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">如何优化AI提示词？</h1><a id="logo" href="/.">筒中窥猫</a><p class="description">学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知而不愠，不亦君子乎？</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">如何优化AI提示词？</h1><div class="post-meta">2026-04-28<span> | </span><span class="category"><a href="/category/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></span></div><div class="post-content"><p>提示词这件事，表面上像是在“写一句话”，实际上更像是在给模型下达一份清晰的工作说明。</p>
+<p>很多人第一次用 AI 时，常见的感觉是：明明说了需求，结果却总是不稳定。要么太空，要么跑题，要么细节堆得很满，但就是不是自己想要的。问题往往不在模型“听不懂”，而在提示词本身还不够清楚。</p>
+<p>高质量的提示词，不是越长越好，也不是越“聪明”越好。它的核心，是让模型尽可能少猜、多做对。</p>
+<h2 id="一、你到底要它做什么"><a href="#一、你到底要它做什么" class="headerlink" title="一、你到底要它做什么"></a>一、你到底要它做什么</h2><p>设计提示词，第一步不是写句子，而是定任务。</p>
+<p>一个好的提示词，最好只解决一个核心问题。比如：</p>
+<ul>
+<li>只做总结，不同时要求分析、改写、润色</li>
+<li>只生成方案，不又要写背景、又要写感想</li>
+<li>只提炼结论，不再顺手扩写成文章</li>
+</ul>
+<p>任务越混杂，模型越容易分散注意力。你给它的目标越多，它就越容易在多个方向之间摇摆，最后输出一个“什么都沾一点，但什么都不够好”的结果。</p>
+<p>所以在动笔之前，先问自己一句：</p>
+<blockquote>
+<p>我希望它最终帮我完成的，究竟是哪一件事？</p>
+</blockquote>
+<p>如果这一句都说不清，后面的提示词大概率也不会稳定。</p>
+<h2 id="二、上下文要够，但别堆满"><a href="#二、上下文要够，但别堆满" class="headerlink" title="二、上下文要够，但别堆满"></a>二、上下文要够，但别堆满</h2><p>很多人写提示词时会犯另一个极端：把所有背景一股脑塞进去，生怕模型不知道来龙去脉。</p>
+<p>但上下文不是越多越好，而是要“够用且相关”。</p>
+<p>真正有用的信息，应该围绕任务本身展开：</p>
+<ul>
+<li>谁在使用</li>
+<li>输入是什么</li>
+<li>目标是什么</li>
+<li>哪些信息是主信息，哪些只是辅助</li>
+<li>哪些内容必须保留，哪些可以忽略</li>
+</ul>
+<p>无关背景太多，反而会让模型分心。它可能把次要信息当成重点，也可能被噪音带偏。</p>
+<p>更稳妥的方式是：只提供完成任务所必需的信息。能帮助模型判断的，就给；不能直接帮助判断的，就删。</p>
+<p>这和写代码很像。函数参数不是越多越好，真正有用的是“刚好够”。</p>
+<h2 id="三、约束要写成能执行的规则"><a href="#三、约束要写成能执行的规则" class="headerlink" title="三、约束要写成能执行的规则"></a>三、约束要写成能执行的规则</h2><p>很多提示词看起来很认真，但问题在于，约束太抽象。</p>
+<p>比如：</p>
+<ul>
+<li>不要编造</li>
+<li>不要扩写</li>
+<li>要简洁</li>
+<li>要专业</li>
+</ul>
+<p>这些话没有错，但还不够落地。模型能理解方向，却不一定知道你在具体执行层面希望它怎么做。</p>
+<p>更有效的方式，是把抽象要求改写成可操作规则。例如：</p>
+<ul>
+<li>只基于输入内容回答</li>
+<li>没有证据的信息写“无”</li>
+<li>不要补充输入中没有出现的背景</li>
+<li>不要主动联想、推断或延伸</li>
+<li>只保留与任务直接相关的信息</li>
+</ul>
+<p>把“不要怎样”改成“应该怎样”，会更稳。</p>
+<p>因为模型真正需要的，不只是禁令，还需要明确的行为边界。</p>
+<h2 id="四、输出格式要强约束"><a href="#四、输出格式要强约束" class="headerlink" title="四、输出格式要强约束"></a>四、输出格式要强约束</h2><p>如果你希望结果可直接使用，就不要把输出格式交给模型自由发挥。</p>
+<p>格式越明确，结果越可控。你可以直接规定：</p>
+<ul>
+<li>用什么标题层级</li>
+<li>分几个部分</li>
+<li>每部分写什么</li>
+<li>用列表还是表格</li>
+<li>是否允许新增章节</li>
+<li>是否允许加解释</li>
+</ul>
+<p>比如同样是总结任务，如果你不规定结构，模型可能一次写成散文，一次写成清单，一次写成半分析半感想。即使内容大体正确，使用起来还是不方便。</p>
+<p>而一旦你把格式锁住，结果就更容易检查，也更容易复用。</p>
+<p>对普通用户来说，这一点尤其重要。因为大多数时候，你真正需要的不是“更有文采”的输出，而是“拿来就能用”的输出。</p>
+<h2 id="五、边界要说清楚，尤其是“不能推断什么”"><a href="#五、边界要说清楚，尤其是“不能推断什么”" class="headerlink" title="五、边界要说清楚，尤其是“不能推断什么”"></a>五、边界要说清楚，尤其是“不能推断什么”</h2><p>高质量提示词，最容易被忽视的一点，是边界。</p>
+<p>边界不清，模型就会开始补。它会用常识填空，用经验补全，用推理延伸。很多时候，这种补全看上去合理，但其实已经偏离了输入。</p>
+<p>所以，关键不只是说“不要编造”，还要进一步说明：</p>
+<ul>
+<li>哪些信息可以用</li>
+<li>哪些信息不能推断</li>
+<li>缺失信息怎么处理</li>
+<li>证据不足时怎么表达</li>
+</ul>
+<p>比如，缺少证据时直接写“无”，比让模型猜一个“可能是这样”要稳得多。</p>
+<p>这类规则看起来有点“死”，但恰恰是它让输出更可靠。对于需要反复使用的提示词来说，边界越清，后续越省心。</p>
+<h2 id="六、好的提示词，要内置评价标准"><a href="#六、好的提示词，要内置评价标准" class="headerlink" title="六、好的提示词，要内置评价标准"></a>六、好的提示词，要内置评价标准</h2><p>提示词不只是告诉模型“做什么”，也要告诉它“什么算做好”。</p>
+<p>评价标准越明确，输出质量越稳定。你可以从这些角度描述：</p>
+<ul>
+<li>准确</li>
+<li>简洁</li>
+<li>不重复</li>
+<li>有结论</li>
+<li>可执行</li>
+<li>结构清楚</li>
+<li>容易核对</li>
+</ul>
+<p>这一步很重要，因为模型并不知道你心里的“好”具体是什么。</p>
+<p>有些人希望它写得完整，有些人希望它尽量短；有些人要的是分析深度，有些人要的是快速提炼。没有评价标准，模型只能默认理解，结果自然不一定符合预期。</p>
+<p>换句话说，提示词不只是任务单，也是评分标准。</p>
+<h2 id="七、提前想好模型最可能犯的错"><a href="#七、提前想好模型最可能犯的错" class="headerlink" title="七、提前想好模型最可能犯的错"></a>七、提前想好模型最可能犯的错</h2><p>高质量提示词，往往不是写得最漂亮的那一个，而是最会防错的那一个。</p>
+<p>常见失败模式其实很固定：</p>
+<ul>
+<li>跑题</li>
+<li>流水账</li>
+<li>脑补</li>
+<li>格式混乱</li>
+<li>结论空泛</li>
+<li>重复啰嗦</li>
+<li>把噪音当重点</li>
+</ul>
+<p>你不一定要把所有错误都写进去，但至少要提前想一遍：</p>
+<blockquote>
+<p>这个任务里，模型最可能在哪一步出问题？</p>
+</blockquote>
+<p>然后针对这些地方补约束。</p>
+<p>比如，做日记录总结时，最大的风险往往不是“写不出来”，而是“把无关内容也总结进去”。这时就要明确只总结有效对话内容，排除系统消息、状态消息和闲聊；规律只能来自直接可见的模式；建议必须能从当天内容直接推出。</p>
+<p>这类限制看起来琐碎，但正是它们让结果更稳。</p>
+<h2 id="八、优化提示词，可以按三轮走"><a href="#八、优化提示词，可以按三轮走" class="headerlink" title="八、优化提示词，可以按三轮走"></a>八、优化提示词，可以按三轮走</h2><p>如果你不是一开始就能写出完美提示词，不用急。更好的方法，是分轮迭代。</p>
+<h3 id="第一轮：先跑通"><a href="#第一轮：先跑通" class="headerlink" title="第一轮：先跑通"></a>第一轮：先跑通</h3><p>先只保留最核心的三件事：</p>
+<ul>
+<li>任务是什么</li>
+<li>输入是什么</li>
+<li>输出长什么样</li>
+</ul>
+<p>这一步的目标不是完美，而是先让它跑起来。</p>
+<h3 id="第二轮：加稳定性"><a href="#第二轮：加稳定性" class="headerlink" title="第二轮：加稳定性"></a>第二轮：加稳定性</h3><p>当基础输出能用了，再补：</p>
+<ul>
+<li>禁止项</li>
+<li>边界条件</li>
+<li>缺失信息处理方式</li>
+<li>排除噪音的规则</li>
+</ul>
+<p>这一轮主要是减少跑偏。</p>
+<h3 id="第三轮：提质量"><a href="#第三轮：提质量" class="headerlink" title="第三轮：提质量"></a>第三轮：提质量</h3><p>最后再加：</p>
+<ul>
+<li>风格要求</li>
+<li>评价标准</li>
+<li>优先级</li>
+<li>常见错误的防护措施</li>
+</ul>
+<p>这一轮不是为了“更花”，而是为了让结果更可用、更稳定。</p>
+<p>这和工程里的迭代很像。先成型，再收紧，再打磨。</p>
+<h2 id="九、怎么判断一个提示词是否优秀"><a href="#九、怎么判断一个提示词是否优秀" class="headerlink" title="九、怎么判断一个提示词是否优秀"></a>九、怎么判断一个提示词是否优秀</h2><p>你可以从六个角度快速检查：</p>
+<ul>
+<li><strong>清晰度</strong>：模型一眼能不能看懂任务</li>
+<li><strong>完整度</strong>：输入、输出、规则是不是齐</li>
+<li><strong>约束力</strong>：有没有明确防止编造、跑题、流水账</li>
+<li><strong>可验证性</strong>：结果是不是容易检查</li>
+<li><strong>稳定性</strong>：多次运行会不会差不多</li>
+<li><strong>可维护性</strong>：以后改起来难不难</li>
+</ul>
+<p>如果一个提示词只有“看起来很高级”，但不容易验证、不稳定、难复用，那它通常还不算高质量。</p>
+<p>真正好的提示词，应该是能长期用的。</p>
+<h2 id="十、一个简单的判断公式"><a href="#十、一个简单的判断公式" class="headerlink" title="十、一个简单的判断公式"></a>十、一个简单的判断公式</h2><p>可以把高质量提示词理解成这句话：</p>
+<blockquote>
+<p>好提示词 &#x3D; 任务明确 + 上下文充分 + 约束清楚 + 输出固定 + 边界明确 + 可验证</p>
+</blockquote>
+<p>这个公式不复杂，但很实用。</p>
+<p>你以后每次写提示词，都可以拿它过一遍：</p>
+<ul>
+<li>任务有没有收窄？</li>
+<li>上下文是不是刚好？</li>
+<li>约束是不是能执行？</li>
+<li>输出格式是不是固定？</li>
+<li>边界有没有说清？</li>
+<li>结果能不能检查？</li>
+</ul>
+<p>只要这几项逐步到位，提示词质量通常都会明显提升。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>设计高质量 AI 提示词，本质上不是“会不会说”，而是“会不会把事情说明白”。</p>
+<p>你越清楚地告诉模型：</p>
+<ul>
+<li>要做什么</li>
+<li>不要做什么</li>
+<li>输出长什么样</li>
+<li>哪些能用，哪些不能猜</li>
+<li>什么算好结果</li>
+</ul>
+<p>它就越能稳定地给你想要的东西。</p>
+<p>所以，别把提示词当成一句临时口令。把它当成一份小而清晰的工作说明书。<br>写得越清楚，AI 就越像一个靠谱的执行者。</p>
+</div><div class="tags"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AI%E6%8F%90%E7%A4%BA%E8%AF%8D/" rel="tag">AI提示词</a></li></ul></div><div class="post-nav"><a class="next" href="/2026/03/16/%E5%AD%94%E5%AD%90%E7%9A%84%E5%85%A5%E4%B8%96%E8%A7%82/">孔子的入世观</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img class="nofancybox" src="/images/筒中窥猫.jpg"/></a><p>因上努力，果上随缘</p><a class="info-icon" href="https://weibo.com/ewangplay" title="Weibo" target="_blank" style="margin-inline:5px"> <i class="fa fa-twitter-square" style="margin-inline:5px"></i></a><a class="info-icon" href="mailto:ewangplay@qq.com" title="Email" target="_blank" style="margin-inline:5px"> <i class="fa fa-envelope-square" style="margin-inline:5px"></i></a><a class="info-icon" href="https://github.com/ewangplay" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/category/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E4%BA%BA%E7%94%9F%E8%AE%A1%E5%88%92/">人生计划</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E4%BA%BA%E7%94%9F%E9%9A%8F%E7%AC%94/">人生随笔</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86/">健康管理</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E5%AE%B6%E5%BA%AD%E6%95%99%E8%82%B2/">家庭教育</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E5%B7%A5%E4%BD%9C%E6%80%9D%E8%80%83/">工作思考</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E5%BD%B1%E8%A7%86%E8%AF%84%E8%AE%BA/">影视评论</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E5%BF%83%E5%AD%A6/">心学</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E6%8A%80%E6%9C%AF%E8%AE%B0%E5%BD%95/">技术记录</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E6%95%8F%E6%8D%B7%E4%BA%BA%E7%94%9F/">敏捷人生</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/">敏捷开发</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E6%9D%82%E9%A1%B9/">杂项</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">架构设计</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E6%B8%B8%E8%AE%B0/">游记</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E7%A4%BE%E4%BC%9A%E8%A7%82%E5%AF%9F/">社会观察</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E7%BB%88%E8%BA%AB%E6%88%90%E9%95%BF/">终身成长</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/">编程技术</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E8%A1%8C%E4%B8%BA%E7%AE%A1%E7%90%86/">行为管理</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E8%AE%A4%E7%9F%A5%E7%A7%91%E5%AD%A6/">认知科学</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E8%AE%BA%E8%AF%AD/">论语</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E8%AF%BB%E4%B9%A6/">读书</a></li><li class="category-list-item"><a class="category-list-link" href="/category/%E8%AF%BB%E5%8F%B2/">读史</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tag/FVWM/" style="font-size: 15px;">FVWM</a> <a href="/tag/Golang/" style="font-size: 15px;">Golang</a> <a href="/tag/%E5%A5%87%E7%89%B9%E7%9A%84%E4%B8%80%E7%94%9F/" style="font-size: 15px;">奇特的一生</a> <a href="/tag/%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F/" style="font-size: 15px;">人生感悟</a> <a href="/tag/%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" style="font-size: 15px;">年度总结</a> <a href="/tag/%E8%81%8C%E4%B8%9A%E7%94%9F%E6%B6%AF/" style="font-size: 15px;">职业生涯</a> <a href="/tag/%E6%9E%81%E7%AE%80%E4%B8%BB%E4%B9%89/" style="font-size: 15px;">极简主义</a> <a href="/tag/%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/" style="font-size: 15px;">工作环境</a> <a href="/tag/%E7%BC%96%E7%A8%8B%E9%81%93%E5%9C%BA/" style="font-size: 15px;">编程道场</a> <a href="/tag/Thrift/" style="font-size: 15px;">Thrift</a> <a href="/tag/%E5%8F%94%E6%9C%AC%E5%8D%8E/" style="font-size: 15px;">叔本华</a> <a href="/tag/%E8%AE%BA%E6%80%9D%E8%80%83/" style="font-size: 15px;">论思考</a> <a href="/tag/%E5%B9%B4%E5%BA%A6%E8%AE%A1%E5%88%92/" style="font-size: 15px;">年度计划</a> <a href="/tag/%E5%86%99%E7%BB%99%E5%AD%A9%E5%AD%90%E7%9A%84%E4%BF%A1/" style="font-size: 15px;">写给孩子的信</a> <a href="/tag/%E5%B7%A5%E4%BD%9C%E6%84%9F%E6%82%9F/" style="font-size: 15px;">工作感悟</a> <a href="/tag/%E8%AF%BB%E4%B9%A6%E5%8D%95/" style="font-size: 15px;">读书单</a> <a href="/tag/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 15px;">个人博客</a> <a href="/tag/Github/" style="font-size: 15px;">Github</a> <a href="/tag/%E6%9E%AA%E7%82%AE%E7%97%85%E8%8F%8C%E4%B8%8E%E9%92%A2%E9%93%81/" style="font-size: 15px;">枪炮病菌与钢铁</a> <a href="/tag/%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%81%93/" style="font-size: 15px;">学习之道</a> <a href="/tag/%E7%AC%AC%E4%B8%89%E7%A7%8D%E9%BB%91%E7%8C%A9%E7%8C%A9/" style="font-size: 15px;">第三种黑猩猩</a> <a href="/tag/%E5%B7%A8%E4%BA%BA%E7%9A%84%E9%99%A8%E8%90%BD/" style="font-size: 15px;">巨人的陨落</a> <a href="/tag/%E6%BA%90%E6%B3%89/" style="font-size: 15px;">源泉</a> <a href="/tag/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 15px;">分布式</a> <a href="/tag/%E5%AD%A6%E8%BD%A6/" style="font-size: 15px;">学车</a> <a href="/tag/%E6%9C%AB%E6%97%A5%E7%A9%B7%E9%80%94/" style="font-size: 15px;">末日穷途</a> <a href="/tag/%E7%99%BE%E9%B8%9F%E6%9C%9D%E5%87%A4/" style="font-size: 15px;">百鸟朝凤</a> <a href="/tag/%E7%A8%8B%E5%BA%8F%E5%91%98%E5%AE%A2%E6%A0%88/" style="font-size: 15px;">程序员客栈</a> <a href="/tag/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 15px;">微服务</a> <a href="/tag/C/" style="font-size: 15px;">C++</a> <a href="/tag/%E6%B8%B8%E6%B3%B3/" style="font-size: 15px;">游泳</a> <a href="/tag/%E5%BF%AB%E6%97%B6%E4%BB%A3%E6%85%A2%E6%80%9D%E8%80%83/" style="font-size: 15px;">快时代慢思考</a> <a href="/tag/%E8%B7%91%E6%AD%A5/" style="font-size: 15px;">跑步</a> <a href="/tag/%E6%95%99%E8%82%B2/" style="font-size: 15px;">教育</a> <a href="/tag/%E7%9F%A5%E8%A1%8C%E5%90%88%E4%B8%80/" style="font-size: 15px;">知行合一</a> <a href="/tag/%E9%98%BF%E7%94%98%E6%AD%A3%E4%BC%A0/" style="font-size: 15px;">阿甘正传</a> <a href="/tag/%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%88%B6/" style="font-size: 15px;">游戏机制</a> <a href="/tag/%E5%9B%B4%E5%9F%8E/" style="font-size: 15px;">围城</a> <a href="/tag/%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">如何学习</a> <a href="/tag/%E5%9F%83%E5%8D%9A%E6%8B%89/" style="font-size: 15px;">埃博拉</a> <a href="/tag/%E8%A1%80%E7%96%AB/" style="font-size: 15px;">血疫</a> <a href="/tag/%E6%9C%AA%E6%88%90%E5%B9%B4%E4%BA%BA%E7%8A%AF%E7%BD%AA/" style="font-size: 15px;">未成年人犯罪</a> <a href="/tag/%E8%BE%85%E5%AF%BC%E4%BD%9C%E4%B8%9A/" style="font-size: 15px;">辅导作业</a> <a href="/tag/%E5%A6%82%E4%BD%95%E6%80%9D%E8%80%83/" style="font-size: 15px;">如何思考</a> <a href="/tag/%E5%B0%91%E5%84%BF%E7%BC%96%E7%A8%8B/" style="font-size: 15px;">少儿编程</a> <a href="/tag/scratch/" style="font-size: 15px;">scratch</a> <a href="/tag/%E7%94%9F%E6%B6%AF%E7%AE%A1%E7%90%86/" style="font-size: 15px;">生涯管理</a> <a href="/tag/%E5%A3%AB%E5%85%B5%E7%AA%81%E5%87%BB/" style="font-size: 15px;">士兵突击</a> <a href="/tag/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" style="font-size: 15px;">学习计划</a> <a href="/tag/%E5%8D%A1%E6%8B%89%E9%A9%AC%E4%BD%90%E5%A4%AB%E5%85%84%E5%BC%9F/" style="font-size: 15px;">卡拉马佐夫兄弟</a> <a href="/tag/%E9%99%80%E6%80%9D%E5%A6%A5%E8%80%B6%E5%A4%AB%E6%96%AF%E5%9F%BA/" style="font-size: 15px;">陀思妥耶夫斯基</a> <a href="/tag/%E7%BD%AA%E4%B8%8E%E7%BD%9A/" style="font-size: 15px;">罪与罚</a> <a href="/tag/%E5%83%8F%E5%93%B2%E5%AD%A6%E5%AE%B6%E4%B8%80%E6%A0%B7%E7%94%9F%E6%B4%BB/" style="font-size: 15px;">像哲学家一样生活</a> <a href="/tag/%E6%96%AF%E5%A4%9A%E8%91%9B%E4%B8%BB%E4%B9%89/" style="font-size: 15px;">斯多葛主义</a> <a href="/tag/%E6%95%8F%E6%8D%B7%E6%95%99%E7%BB%83/" style="font-size: 15px;">敏捷教练</a> <a href="/tag/%E5%BD%93%E4%B8%8B/" style="font-size: 15px;">当下</a> <a href="/tag/%E5%B0%BD%E4%BA%BA%E4%BA%8B/" style="font-size: 15px;">尽人事</a> <a href="/tag/%E5%90%AC%E5%A4%A9%E5%91%BD/" style="font-size: 15px;">听天命</a> <a href="/tag/%E6%B4%BB%E7%9D%80/" style="font-size: 15px;">活着</a> <a href="/tag/%E5%BC%A0%E8%89%BA%E8%B0%8B/" style="font-size: 15px;">张艺谋</a> <a href="/tag/%E7%89%A9%E6%9D%A5%E9%A1%BA%E5%BA%94/" style="font-size: 15px;">物来顺应</a> <a href="/tag/%E7%AB%8B%E5%BF%97/" style="font-size: 15px;">立志</a> <a href="/tag/%E9%98%BF%E5%BE%B7%E5%8B%92/" style="font-size: 15px;">阿德勒</a> <a href="/tag/%E4%B8%AA%E4%BD%93%E5%BF%83%E7%90%86%E5%AD%A6/" style="font-size: 15px;">个体心理学</a> <a href="/tag/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94/" style="font-size: 15px;">被讨厌的勇气</a> <a href="/tag/%E6%9C%B1%E7%86%B9/" style="font-size: 15px;">朱熹</a> <a href="/tag/%E5%AD%A3%E8%B0%A6%E5%85%88%E7%94%9F/" style="font-size: 15px;">季谦先生</a> <a href="/tag/%E5%A4%A9%E5%91%BD/" style="font-size: 15px;">天命</a> <a href="/tag/fabric/" style="font-size: 15px;">fabric</a> <a href="/tag/%E6%88%91%E7%9A%84%E5%9B%A2%E9%95%BF%E6%88%91%E7%9A%84%E5%9B%A2/" style="font-size: 15px;">我的团长我的团</a> <a href="/tag/%E5%AD%94%E5%AD%90/" style="font-size: 15px;">孔子</a> <a href="/tag/%E5%80%9A%E5%A4%A9%E5%B1%A0%E9%BE%99%E8%AE%B0/" style="font-size: 15px;">倚天屠龙记</a> <a href="/tag/%E5%BC%A0%E6%97%A0%E5%BF%8C/" style="font-size: 15px;">张无忌</a> <a href="/tag/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/" style="font-size: 15px;">个人成长</a> <a href="/tag/%E6%8C%87%E7%8E%AF%E7%8E%8B/" style="font-size: 15px;">指环王</a> <a href="/tag/%E6%B8%B8%E8%AE%B0/" style="font-size: 15px;">游记</a> <a href="/tag/%E7%BD%97%E8%BE%91%E6%80%9D%E7%BB%B4/" style="font-size: 15px;">罗辑思维</a> <a href="/tag/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" style="font-size: 15px;">时间管理</a> <a href="/tag/%E9%98%BF%E4%BC%A6%E6%A3%AE/" style="font-size: 15px;">阿伦森</a> <a href="/tag/%E7%A4%BE%E4%BC%9A%E5%BF%83%E7%90%86%E5%AD%A6/" style="font-size: 15px;">社会心理学</a> <a href="/tag/%E5%8A%A0%E7%BC%AA/" style="font-size: 15px;">加缪</a> <a href="/tag/%E5%B1%80%E5%A4%96%E4%BA%BA/" style="font-size: 15px;">局外人</a> <a href="/tag/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/" style="font-size: 15px;">生活记录</a> <a href="/tag/%E6%AF%9B%E5%A7%86/" style="font-size: 15px;">毛姆</a> <a href="/tag/%E4%BA%BA%E6%80%A7%E7%9A%84%E6%9E%B7%E9%94%81/" style="font-size: 15px;">人性的枷锁</a> <a href="/tag/%E6%AF%8D%E4%BA%B2/" style="font-size: 15px;">母亲</a> <a href="/tag/%E6%98%A5%E5%A4%A9/" style="font-size: 15px;">春天</a> <a href="/tag/%E7%B2%BE%E5%8A%9B%E7%AE%A1%E7%90%86/" style="font-size: 15px;">精力管理</a> <a href="/tag/%E5%B0%8F%E7%8B%97%E9%92%B1%E9%92%B1/" style="font-size: 15px;">小狗钱钱</a> <a href="/tag/%E7%90%86%E8%B4%A2/" style="font-size: 15px;">理财</a> <a href="/tag/%E6%8A%95%E8%B5%84/" style="font-size: 15px;">投资</a> <a href="/tag/%E8%8A%92%E6%A0%BC/" style="font-size: 15px;">芒格</a> <a href="/tag/%E9%87%8D%E6%9E%84/" style="font-size: 15px;">重构</a> <a href="/tag/AI/" style="font-size: 15px;">AI</a> <a href="/tag/%E5%9B%BE%E7%81%B5/" style="font-size: 15px;">图灵</a> <a href="/tag/%E8%AE%BA%E8%AF%AD%E5%85%B1%E8%AF%BB/" style="font-size: 15px;">论语共读</a> <a href="/tag/%E8%AE%BA%E8%AF%AD%E6%9C%AD%E8%AE%B0/" style="font-size: 15px;">论语札记</a> <a href="/tag/%E4%B8%AD%E5%B1%B1%E5%85%AC%E5%9B%AD/" style="font-size: 15px;">中山公园</a> <a href="/tag/%E8%AE%A4%E7%9F%A5%E5%A4%B1%E8%B0%83/" style="font-size: 15px;">认知失调</a> <a href="/tag/%E4%BB%8E%E4%BC%97/" style="font-size: 15px;">从众</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2026/04/28/%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96AI%E6%8F%90%E7%A4%BA%E8%AF%8D%EF%BC%9F/">如何优化AI提示词？</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/03/16/%E5%AD%94%E5%AD%90%E7%9A%84%E5%85%A5%E4%B8%96%E8%A7%82/">孔子的入世观</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/03/13/%E9%9D%9E%E7%A9%B7%E5%B0%BD%E5%88%97%E4%B8%BE/">非穷尽列举</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/03/03/%E4%BA%91%E9%97%B4%E7%83%9F%E7%81%AB%E6%98%AF%E4%BA%BA%E5%AE%B6/">云间烟火是人家</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/03/01/%E5%AD%A6%E5%A0%82%E5%B2%97%E5%9C%A3%E5%BA%99%E8%AE%B0/">学堂岗圣庙记</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/02/09/%E6%97%A0%E7%94%A8%E4%B9%8B%E7%94%A8/">无用之用</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/02/07/%E6%B1%82%E5%85%B6%E6%94%BE%E5%BF%83/">求其放心</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/02/05/%E8%A6%81%E6%83%B3%E4%BA%BA%E4%B8%8D%E7%9F%A5%EF%BC%8C%E9%99%A4%E9%9D%9E%E5%B7%B1%E8%8E%AB%E4%B8%BA/">要想人不知，除非己莫为</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/01/05/%E6%88%91%E5%91%BD%E7%94%B1%E6%88%91%E4%B8%8D%E7%94%B1%E5%A4%A9/">我命由我不由天</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/01/04/%E5%90%9B%E5%AD%90%E4%B8%8D%E9%87%8D%E5%88%99%E4%B8%8D%E5%A8%81/">君子不重则不威</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2026 <a href="/." rel="nofollow">筒中窥猫.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="https://unpkg.com/@fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="https://unpkg.com/@fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
