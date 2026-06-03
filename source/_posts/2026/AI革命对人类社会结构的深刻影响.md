@@ -1,7 +1,7 @@
 ---
 title: AI革命对人类社会结构的深刻影响
 date: 2026-06-03 15:07:18
-tags: [AI]
+tags: [AI,hide]
 categories: [人工智能]
 ---
 
